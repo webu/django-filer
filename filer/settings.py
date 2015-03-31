@@ -219,3 +219,5 @@ FILER_PRIVATEMEDIA_SERVER = load_object(FILER_SERVERS['private']['main']['ENGINE
 FILER_PRIVATEMEDIA_THUMBNAIL_SERVER = load_object(FILER_SERVERS['private']['thumbnails']['ENGINE'])(**FILER_SERVERS['private']['thumbnails']['OPTIONS'])
 
 FILER_DUMP_PAYLOAD = getattr(settings, 'FILER_DUMP_PAYLOAD', False)  # Whether the filer shall dump the files payload
+
+FILER_DEFAULT_FOLDER_GETTER = getattr(settings, 'FILER_DEFAULT_FOLDER_GETTER', 'filer.utils.folders.DefaultFolderGetter')
