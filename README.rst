@@ -26,6 +26,7 @@ Dependencies
 * `easy_thumbnails`_ >= 1.0
 * `django-polymorphic`_ >= 0.2
 * `Pillow`_ 2.3.0 (with JPEG and ZLIB support, `PIL`_ 1.1.7 is supported but not recommended)
+* `importlib` only if you use python 2.6
 
 ``django.contrib.staticfiles`` is required.
 
