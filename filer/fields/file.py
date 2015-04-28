@@ -100,6 +100,8 @@ class AdminFileWidget(ForeignKeyRawIdWidget):
                         'wait_sing':text_type(_('Please wait until the file is sent.')),
                         'wait_plur':text_type(_('Please wait until the %(nb_files)d files are sent.')),
                         'no_file_selected':text_type(_('No file selected')),
+                        'choose_new_file':text_type(_('Choose a file')),
+                        'choose_replace_file':text_type(_('Choose another file')),
                     },
                     'url':reverse('filer_direct_upload'),
                     'direct_upload_folder_key':self.direct_upload_folder_key,

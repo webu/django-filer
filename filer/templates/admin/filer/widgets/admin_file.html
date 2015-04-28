@@ -1,5 +1,5 @@
 {% load i18n filer_admin_tags %}{% spaceless %}
-<span class="filerFile">
+<span class="filerFile {{ object|yesno:'fileSelected,' }}">
 {% block object_display %}
 {% if object %}
 	{% if object.icons.32 %}

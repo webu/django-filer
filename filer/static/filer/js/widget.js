@@ -1,15 +1,18 @@
 (function($) {
     var filer_clear = function(e){
         var clearer = $(this),
-            hidden_input = clearer.closest('.filerFile').find('input.vForeignKeyRawIdAdminField'),
+            container = clearer.closest('.filerFile'),
+            hidden_input = container.find('input.vForeignKeyRawIdAdminField'),
             base_id = '#'+hidden_input.attr('id'),
             thumbnail = $(base_id+'_thumbnail_img'),
             description = $(base_id+'_description_txt'),
             static_prefix = clearer.attr('src').replace('admin/img/icon_deletelink.gif', 'filer/');
+        container.removeClass('fileSelected') ;
         clearer.hide();
         hidden_input.removeAttr("value");
         thumbnail.attr("src", static_prefix+"icons/nofile_48x48.png");
         description.html("");
+        container.find('.filerChoose').html(filerData.choose_new_file);
     }
 
     $(document).ready(function(){
@@ -61,6 +64,9 @@ if(window.FormData){
                     if(filerData.direct_upload_folder_key){
                         url+='&folder_key='+filerData.direct_upload_folder_key;
                     }
+                    if(!form.filer_uploading){
+                        container.addClass('fileUploading') ;
+                    }
                     name = name.substring(startIndex+1);
                     el_filename.html(name);
                     form.filer_uploading += 1 ;
@@ -81,6 +87,8 @@ if(window.FormData){
                                 $(base_id+'_description_txt').html(data.label);
                                 $(base_id+'_clear').show();
                                 container.find('.filerFilename').html(filerData.msg.no_file_selected);
+                                container.addClass('fileSelected') ;
+                                container.find('.filerChoose').html(filerData.msg.choose_replace_file);
                             }else{
                                 alert(data.error);
                             }
@@ -90,6 +98,11 @@ if(window.FormData){
                             alert(filerData.msg.error);
                             form.filer_uploading -= 1 ;
                          },
+                         complete: function(jqXHR, textStatus){
+                            if(!form.filer_uploading){
+                                 container.removeClass('fileUploading') ;
+                            }
+                         }
                     });
                 }
             });

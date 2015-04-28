@@ -59,12 +59,18 @@ a.small_folder_link {
 	float: right;
 }
 
+.fileUploading .filerProgress{
+	display: inline-block !important;
+	margin: 2px 5px;
+}
 .filerUploader span{
 	display:inline-block;
 }
 .filerUploader > span{
 	position:relative;
 }
-.filerUploader > span input[type=file]{
+.filerUploader > span input[type=file],
+.fileSelected .filerFilename,
+.fileUploading .filerChoose{
 	display:none;
 }
