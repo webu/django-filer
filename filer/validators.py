@@ -46,6 +46,8 @@ class FileMimetypeValidator(object):
         wildcard_mime = '%s/*' % mime.split('/')[0]
 
         if mime not in self.mimetypes and wildcard_mime not in self.mimetypes:
-            msg = _('%s is not a valid file. Allowed file types are : %s') % (
-                f, ', '.join(self.mimetypes))
+            msg = _('%(file)s is not a valid file. Allowed file types are : %(types)s') % {
+                'file': f,
+                'types': ', '.join(self.mimetypes),
+            }
             raise ValidationError(msg)
